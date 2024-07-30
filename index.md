@@ -2,7 +2,7 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
+### majorsopa's crackme series
 
-[Link to another page](./writeups/home.html).
+[Link to another page](./writeups/majorsopa/crackme0.md).
 
