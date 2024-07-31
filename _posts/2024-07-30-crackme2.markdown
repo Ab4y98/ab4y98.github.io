@@ -5,8 +5,6 @@ date:   2024-07-30 20:00:00 +0200
 categories:
 ---
 
-# cmajorsopa's crackme2
-
 After successfully completing crackme0 and crackme1, we now face the final challenge in cmajorsopa's series. This crackme is slightly more difficult than the previous two.
 
 I highly recommend you follow along with me, whether you're facing challenges solving this challenge or simply want to learn something new!
