@@ -1,6 +1,133 @@
 ---
-layout: default
+
+layout:  default
+
 ---
 
 # cmajorsopa's crackme2
-### By Ab4y98 (Daniel Abay)
+
+After successfully completing crackme0 and crackme1, we now face the final challenge in cmajorsopa's series. This crackme is slightly more difficult than the previous two.
+
+I highly recommend you follow along with me, whether you're facing challenges solving this challenge or simply want to learn something new!
+
+[crackme2](https://crackmes.one/crackme/6620ffbacddae72ae250c9c8)
+
+After downloading the EXE file and running it on our machine, we can see that it prompts us for a password, just like in the last two challenges.
+
+![](https://i.postimg.cc/1zzxRSnJ/image.png)
+
+Using Ghidra, we can start by decompiling the program to understand its functionality and behavior. After importing the program and allowing Ghidra to analyze it, we see the following screenshot:
+
+![](https://i.postimg.cc/y8M9s1bz/image.png)
+
+It seems that we can't locate the main function of the program. To find it, we'll use a neat trick: Ghidra's "Search Program Text" feature. By searching for the string "Enter password:", we can see where it's used and identify the main function like so:
+
+![](https://i.postimg.cc/WtRjtyLt/image.png)
+
+Here we can finally see the main function of the program:
+
+![](https://i.postimg.cc/W1vFHWF2/image.png)
+
+At first, it might look like a lot of mumbo jumbo, but we can clarify things by renaming some of the functions and variables that we've identified after manually analyzing some of the code.
+
+![](https://i.postimg.cc/d0XJz3H8/image.png)
+
+Now that's a little bit better...
+
+After finding the main function, I usually like to run the program using a debugger like x64dbg to see it in action. So, how can we find the main function in the debugger? One of the methods I like to use in x64dbg is to copy the stack prologue and a few bytes after it, then use the "Find Pattern" feature in x64dbg to locate them. (idk that's how I used to do it, there is probably better way to do so...)
+
+![](https://i.postimg.cc/T3kpkRr6/image.png)
+
+![](https://i.postimg.cc/PfmJgbmK/image.png)
+
+![](https://i.postimg.cc/X7LJJV1C/image.png)
+
+Here, we can see that we've located the stack prologue in the program and identified the main function.
+
+![](https://i.postimg.cc/MHDWvD5S/image.png)
+
+What's next? 
+
+First, we need to understand what's happening behind the scenes of the program. We need to locate the function that checks our input and determine how it performs the check.
+
+After some digging and looking around, I found a function that manipulates our input and then checks it against a random memory address.
+
+Here is the decompiled code of that function:
+
+![](https://i.postimg.cc/14hp3yvT/image.png)
+
+Trying to understand what's happening in this function was a bit rough at the beginning, but essentially, this function accepts the ASCII characters 0 (0x30) and 1 (0x31). 
+
+When the function encounters the character '1' (0x31), it takes the expression `(1 << bit_position) | value`  which shift lets the bits by the value of `bit_position` and then OR it using the `value`.
+
+So basically we have an `i` integer that loops over the `while` loop and he gets bigger but the amount of rounds he does, his amount is taken and used for the  `bit_position` and the `value` is the number that we saved from the previous run on the loop.
+
+Example:
+
+Let's assume we entered the number `0001`:
+
+The expression will be  `(1 << 2) | 0001`.
+   - `1` in binary is `0001`.
+   - Shifting `1` two positions to the left results in `0100` (which is `4` in decimal).
+
+Bitwise OR Operation: `0100 | 0001`
+   - `0100` (4 in decimal) is `00000100` in 8-bit binary.
+   - `0001` (1 in decimal) is `00000001` in 8-bit binary.
+   - 
+   - Performing the OR operation:
+     - `00000100` (4)
+     - `00000001` (1)
+     - The result is `00000101` (which is `5` in decimal).
+
+So to sum it all up:
+
+The expression `(1 << 2) | 0001` sets the bit at position `2` to `1` in `0001`, resulting in `0005`.
+
+I hope you understood this part :)
+
+With that in mind we can see the instructions of that function inside x64dbg:
+
+![](https://i.postimg.cc/hPKSdHHR/image.png)
+
+In the following screenshot, we can see that the value `11111111111` has been entered and is now visible on the stack:
+
+![](https://i.postimg.cc/V6j8SRgN/image.png)
+
+So, we know that when we enter the values `0` or `1`, some shifting occurs inside the function, which is eventually compared to determine if the input is correct or not.
+
+in the following screenshot we can see that this value is stored in the `EAX` register. this value was fetched from the memory address `D97F18` and then was XORed with our input to check if the `Zero Flag` will be `1` (which means that they are equal), and if they do, the password is correct.
+
+![](https://i.postimg.cc/cJR9w5pP/image.png)
+
+So how can we get to the same value that is stored inside `EAX` to pass this challenge??
+
+For this task, I used the help of our little friend "ChatGPT," asking it to translate the decompiled code into Python to mimic its functionality.
+
+![](https://i.postimg.cc/fLFwkwS2/image.png)
+
+After running this Python script, it will handle the "bit left shifting and OR" operations, then print the hex values after manipulating the original binary data. We can later use these values to craft our password.
+
+
+Here we can see the output from the script:
+
+![](https://i.postimg.cc/brtqtKQz/image.png)
+
+And here we can see the values the we need to have in order to enter the current value that is stored inside `EAX`:
+
+![](https://i.postimg.cc/gcXhsjs0/image.png)
+
+So, after gathering all the values, we end up with the following: `10100111100000010110010011111110`, which we'll enter into the program:
+
+![](https://i.postimg.cc/mDcPmpQn/image.png)
+
+Yes! as you can see indeed our password was correct because it was the same as the value inside `EAX`!
+
+I want to add a very important note about how the program generates the password inside the binary. Each time you run the EXE file—whether on a different system, after a reboot, or even just by changing the EXE file's name—the memory address will change due to ASLR (Address Space Layout Randomization). I noticed this while solving the challenge but didn’t fully understand why it happened at first. I also saw a great comment on the crackme2 webpage from a user named "cnathansmith," who explained it well.
+
+![](https://i.postimg.cc/brxN57dm/image.png)
+
+So if you try to run this challenge on your machine, the password that I used on my machine will not be the same to yours.
+
+Overall, this challenge was pretty fun—I learned some new things along the way, and I hope you do too! :)
+
+![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGN0aGNldGY4aGIzdHBicXY2c2JrdTlrbGhzaDZrNXQyazVzdmdsOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT5LMHxhOfscxPfIfm/giphy.webp)
