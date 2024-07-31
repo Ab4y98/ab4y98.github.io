@@ -1,15 +1,11 @@
 ---
 layout: page
-title: /about
-permalink: /about/
+title: About
 ---
 
-# jekyll-theme-console
+**About Me**
 
-A jekyll theme with inspiration from linux consoles for hackers, developers and script kiddies.
-You can find the source code for this theme at [github.com/b2a3e8/jekyll-theme-console](https://github.com/b2a3e8/jekyll-theme-console).
+Hey I'm Daniel Abay,
+A dedicated cybersecurity professional specializing in penetration testing. My passion for uncovering vulnerabilities and securing systems is rooted in a lifelong love for breaking things and understanding how they work. This curiosity and drive to explore the inner workings of technology fuel my commitment to cybersecurity.
 
-## What is jekyll?
-
-Jekyll is a simple, blog-aware, static site generator for personal, project, or organization sites. Written in Ruby by Tom Preston-Werner, GitHub's co-founder, it is distributed under an open source license.
-<br />Instead of using databases, Jekyll takes the content, renders Markdown or Textile and Liquid templates, and produces a complete, static website ready to be served by Apache HTTP Server, Nginx or another web server. Jekyll is the engine behind GitHub Pages, a GitHub feature that allows users to host websites based on their GitHub repositories for no additional cost.
+Beyond my main role, I delve into reverse engineering and malware development, further exploring the intricacies of software for both professional advancement and personal enjoyment. In addition to my technical pursuits, I am an avid guitarist, finding creative expression through music. My multifaceted interests fuel both my professional expertise and personal fulfillment.

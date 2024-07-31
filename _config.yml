@@ -1,16 +1,32 @@
-title: 'ab4y98.github.io'
-description: "A jekyll theme inspired by linux consoles for hackers, developers and script kiddies."
-baseurl: "/"
-url: "https://ab4y98.github.io"
+title: Hacker-Blog
+description: "A Jekyll Blog Theme For Hackers"
+author:
+  name: "Daniel Abay"
+  email: "danielabay01@gmail.com"
+  url: "https://ab4y98.github.io"
 
-header_pages:
-  - index.md
-  - about.md
+baseurl: /
 
-style: dark
+source: .
+destination: ./_site
+permalink: /:title
+paginate: 3
+paginate_path: /page/:num/
 
-footer: 'follow me on <a href="https://x.com/Ab4y98/">twitter</a>'
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 
-# Build settings
-markdown: kramdown
-remote_theme: b2a3e8/jekyll-theme-console
+future: true
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Custom variables
+owner : "Ab4y98"
+year : "2024"
