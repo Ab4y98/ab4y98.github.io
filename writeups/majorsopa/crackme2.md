@@ -12,6 +12,10 @@ I highly recommend you follow along with me, whether you're facing challenges so
 
 [crackme2](https://crackmes.one/crackme/6620ffbacddae72ae250c9c8)
 
+Shall we begin?
+
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN6c3JoOHh1a29xZXo1ZmFwY3dqcjNwY25ha2pvOWZkZW1tejBiOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26CalmkpfFU3io3yU/giphy.webp)
+
 After downloading the EXE file and running it on our machine, we can see that it prompts us for a password, just like in the last two challenges.
 
 ![](https://i.postimg.cc/1zzxRSnJ/image.png)
@@ -34,6 +38,7 @@ At first, it might look like a lot of mumbo jumbo, but we can clarify things by 
 ![](https://i.postimg.cc/d0XJz3H8/image.png)
 
 Now that's a little bit better...
+
 After finding the main function, I usually like to run the program using a debugger like x64dbg to see it in action. So, how can we find the main function in the debugger? One of the methods I like to use in x64dbg is to copy the stack prologue and a few bytes after it, then use the "Find Pattern" feature in x64dbg to locate them. (idk that's how I used to do it, there is probably better way to do so...)
 
 ![](https://i.postimg.cc/T3kpkRr6/image.png)
