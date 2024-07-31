@@ -20,7 +20,8 @@ Using Ghidra, we can start by decompiling the program to understand its function
 
 ![](https://i.postimg.cc/y8M9s1bz/image.png)
 
-It seems that we can't locate the main function of the program. To find it, we'll use a neat trick: Ghidra's "Search Program Text" feature. By searching for the string "Enter password:", we can see where it's used and identify the main function like so:
+It seems that we can't locate the main function of the program.
+To find it, we'll use a neat trick: Ghidra's "Search Program Text" feature. By searching for the string "Enter password:", we can see where it's used and identify the main function like so:
 
 ![](https://i.postimg.cc/WtRjtyLt/image.png)
 
@@ -33,7 +34,6 @@ At first, it might look like a lot of mumbo jumbo, but we can clarify things by 
 ![](https://i.postimg.cc/d0XJz3H8/image.png)
 
 Now that's a little bit better...
-
 After finding the main function, I usually like to run the program using a debugger like x64dbg to see it in action. So, how can we find the main function in the debugger? One of the methods I like to use in x64dbg is to copy the stack prologue and a few bytes after it, then use the "Find Pattern" feature in x64dbg to locate them. (idk that's how I used to do it, there is probably better way to do so...)
 
 ![](https://i.postimg.cc/T3kpkRr6/image.png)
