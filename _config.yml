@@ -5,9 +5,7 @@ url: "https://ab4y98.github.io"
 
 header_pages:
   - index.md
-  - peter.md
   - about.md
-  - contact.md
 
 style: dark
 
