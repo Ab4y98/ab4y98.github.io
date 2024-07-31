@@ -1,12 +1,14 @@
 ---
-layout: default
+title: /
+layout: home
+permalink: /
 ---
 
-### majorsopa's crackme series
+# Other Demo Pages
 
-[crackme0](./writeups/majorsopa/crackme0.html)
+[Light](https://b2a3e8.github.io/jekyll-theme-console-demo-light/)
+[Hacker](https://b2a3e8.github.io/jekyll-theme-console-demo-hacker/)
 
-[crackme1](./writeups/majorsopa/crackme1.html)
+# Welcome
 
-[crackme2](./writeups/majorsopa/crackme2.html)
-
+Bla bla bla bla. Bla bla bla bla bla bla bla bla.
