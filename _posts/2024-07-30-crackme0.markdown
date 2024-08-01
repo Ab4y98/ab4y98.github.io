@@ -5,5 +5,44 @@ date:   2024-07-30 20:00:00 +0200
 categories:
 ---
 
-# cmajorsopa's crackme0
+This is the first in a three-part series of Majorsopa's CrackMe challenges. The first challenge is fairly easy to solve, so let’s dive in and get started.
 
+So...
+
+Are you ready for your first challenge?
+
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnY4dGw0enpiMngyeGJmOGRqc3hicHlwa29oNWF3OGwyN3F3bnoybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UoelmnMc7iOGsQ5HGT/giphy.webp)
+
+
+We begin by downloading the exe file from the challenge web page:  [Download Link](https://crackmes.one/crackme/65446e720f4238b24302b41c).
+
+After downloading the challenge, we firstly execute it, then we load it into Ghidra and begin our analysis.
+
+![](/media/majorsopa's-crackme0/image1.png)
+
+![](/media/majorsopa's-crackme0/image2.1.png)
+
+Next, we need to locate the main function.
+
+Ghidra doesn’t always take us directly to it, so we have to find it manually.
+I usually use the `"Search Program Text"` feature to search for specific text that can help me identify where I am in the code.
+
+![](/media/majorsopa's-crackme0/image2.2.png)
+
+Here, we can see where this string is being used in the program:
+
+![](/media/majorsopa's-crackme0/image2.3.png)
+
+And now we are in the main function as you can clearly see:
+
+![](/media/majorsopa's-crackme0/image2.png)
+
+By examining the code, it's easy to spot that a string is being compared using `strcmp`. This is likely our input—perhaps it’s the correct password?
+
+![](/media/majorsopa's-crackme0/image3.png)
+
+Well... as you can clearly see, that was the correct password.
+
+![](/media/majorsopa's-crackme0/image4.png)
+
+Hopefully you didn’t find this challenge difficult, because we’re now moving on to [Crackme1](https://ab4y98.github.io/crackme1).
