@@ -64,7 +64,7 @@ Trying to understand what's happening in this function was a bit rough at the be
 
 When the function encounters the character '1' (0x31), it takes the expression `(1 << bit_position) | value`  which shift lefts the bits by the value of `bit_position` and then ORing it using the `value`.
 
-So basically we have an `i` integer that loops over the `while` loop and he gets bigger but the amount of rounds he does, his amount is taken and used for the  `bit_position` and the `value` is the number that we saved from the previous run on the loop.
+So basically we have an `i` integer that loops over the `while` loop which gets bigger by the amount of rounds he does, this amount is taken and used for the  `bit_position` and the `value` is the `i` value that we saved from the previous run on the loop.
 
 Example:
 
@@ -98,14 +98,13 @@ In the following screenshot, we can see that the value `11111111111` has been en
 ![](/media/majorsopa's-crackme2/image16.png)
 
 So, we know that when we enter the values `0` or `1`, some shifting occurs inside the function, which is eventually compared to determine if the input is correct or not.
-
-in the following screenshot we can see that this value is stored in the `EAX` register. this value was fetched from the memory address `D97F18` and then was XORed with our input to check if the `Zero Flag` will be `1` (which means that they are equal), and if they do, the password is correct.
+in the following screenshot we can see that this value is stored in the `EAX` register. this value was fetched from the memory address `D97F18` and then was XORed with our input to check if the `Zero Flag` will be `1` (which means that they equal). and if they do, the password is correct.
 
 ![](/media/majorsopa's-crackme2/image17.png)
 
 So how can we get to the same value that is stored inside `EAX` to pass this challenge??
 
-For this task, I used the help of our little friend "ChatGPT," asking it to translate the decompiled code into Python to mimic its functionality.
+For that task, I used the help of our little friend "ChatGPT," asking it to translate the decompiled code into Python to mimic its functionality.
 
 ![](/media/majorsopa's-crackme2/image19.png)
 
