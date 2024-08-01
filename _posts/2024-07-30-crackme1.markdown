@@ -5,5 +5,53 @@ date:   2024-07-30 20:00:00 +0200
 categories:
 ---
 
-# cmajorsopa's crackme1
+Now that we’ve completed the first challenge, the one we’re facing now is a bit more challenging, and this time we’ll be using a debugger (x64dbg).
 
+Are you ready?
+
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHVtcnBhaWR6MW9sdnY1cGFscHVmM2ExdDlwNjZpd29mOXhwdXNzcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/599XNNWGtWigo/giphy.webp)
+
+As always, we'll start by running the executable file and then load it into Ghidra for static analysis and decompilation.
+
+![](media/majorsopa's-crackme1/img0.png)
+
+And as we can see the password we entered will not work (of course)...
+
+Let's see what we can discover using Ghidra:
+
+![](media/majorsopa's-crackme1/img1.png)
+
+
+From the previous screenshot, we can see a function named `FUN_14000148a` that processes some strange text and then checks it with `strcmp`. This is a strong indication that this is where the password check is being performed.
+
+But what does `FUN_14000148a` actually do??
+
+![](media/majorsopa's-crackme1/img2.png)
+
+After reading the code, we see a decryption algorithm using the `^` operator for XOR. This suggests that the function decrypts some text with a key at runtime, returns the result to the main function, and then compares it with our input.
+
+So now we are going to use our debugger to see how it's been decrypted at runtime.
+
+Here we can see the function call:
+
+![](media/majorsopa's-crackme1/img3.png)
+
+We can see the instruction inside the function:
+
+![](media/majorsopa's-crackme1/img4.png)
+
+In the following screenshot we can see the for loop that decrypts the stored password:
+
+![](media/majorsopa's-crackme1/img5.png)
+
+If you want to save some time you can create a BP (Breakpoint) after the for loop and see the final decrypted password as I did:
+
+![](media/majorsopa's-crackme1/img6.png)
+
+We see that the password we obtained is `1tcCTpT98dQbnqNECHIwj7vyOyjy1t`. Let’s check if it’s the correct password:
+
+![](media/majorsopa's-crackme1/img7.png)
+
+Great it worked! This challenge was a bit more difficult from the previous challenge but not so much imo...
+
+Now we’re now moving on to the final challenge [Crackme2](https://ab4y98.github.io/crackme2).

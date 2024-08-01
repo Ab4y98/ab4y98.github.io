@@ -37,7 +37,9 @@ And now we are in the main function as you can clearly see:
 
 ![](/media/majorsopa's-crackme0/image2.png)
 
-By examining the code, it's easy to spot that a string is being compared using `strcmp`. This is likely our input—perhaps it’s the correct password?
+By examining the code, it's easy to spot that a string is being compared using `strcmp`, This is likely our input.
+
+Perhaps it’s the correct password?
 
 ![](/media/majorsopa's-crackme0/image3.png)
 
