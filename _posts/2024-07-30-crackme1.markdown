@@ -13,6 +13,8 @@ Are you ready?
 
 As always, we'll start by running the executable file and then load it into Ghidra for static analysis and decompilation.
 
+[Download Link](https://crackmes.one/crackme/661edbffcddae72ae250c8ae).
+
 ![](media/majorsopa's-crackme1/img0.png)
 
 And as we can see the password we entered will not work (of course)...
