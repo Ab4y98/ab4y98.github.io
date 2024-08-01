@@ -60,9 +60,9 @@ Here is the decompiled code of that function:
 
 ![](/media/majorsopa's-crackme2/image13.png)
 
-Trying to understand what's happening in this function was a bit rough at the beginning, but essentially, this function accepts the ASCII characters 0 (0x30) and 1 (0x31). 
+Trying to understand what's happening in this function was a bit rough at the beginning, but essentially, this function accepts the ASCII characters 0 (0x30) or 1 (0x31). 
 
-When the function encounters the character '1' (0x31), it takes the expression `(1 << bit_position) | value`  which shift lets the bits by the value of `bit_position` and then OR it using the `value`.
+When the function encounters the character '1' (0x31), it takes the expression `(1 << bit_position) | value`  which shift lefts the bits by the value of `bit_position` and then ORing it using the `value`.
 
 So basically we have an `i` integer that loops over the `while` loop and he gets bigger but the amount of rounds he does, his amount is taken and used for the  `bit_position` and the `value` is the number that we saved from the previous run on the loop.
 
